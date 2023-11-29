@@ -23,15 +23,18 @@ pipeline{
             )
             }
         } 
-         stage('Integration Test maven'){
+        stage('Unit Test maven'){
+         
          when { expression {  params.action == 'create' } }
+
             steps{
-               script{
+                script{
                    
-                   mvnIntegrationTest()
+                   mvnTest()
                }
             }
-        }
+         }
+         
         stage('Static code analysis: Sonarqube'){
          when { expression {  params.action == 'create' } }
             steps{
